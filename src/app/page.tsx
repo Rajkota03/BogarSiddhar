@@ -1,36 +1,38 @@
 import { Footer } from "@/components/layout/Footer";
 import { getSiteSettings } from "@/lib/actions/settings";
 import { createClient } from "@/lib/supabase/server";
-import { PageRenderer } from "@/components/blocks/PageRenderer";
 import { Navbar } from "@/components/layout/Navbar";
+import { getHomeSections } from "@/lib/actions/home-sections";
+
+// Sections
+import { HeroSection } from "@/components/home/HeroSection";
+import { AboutSection } from "@/components/home/AboutSection";
+import { TeachingsSection } from "@/components/home/TeachingsSection";
+import { SacredPlacesSection } from "@/components/home/SacredPlacesSection";
+import { GallerySection } from "@/components/home/GallerySection";
 
 export default async function Home() {
   const settings = await getSiteSettings();
   const supabase = await createClient();
 
-  // Fetch the "Home" page content from CMS
-  const { data: page } = await supabase
-    .from("pages")
-    .select("content_blocks")
-    .eq("slug", "home")
-    .single();
-
-  const blocks = page?.content_blocks || [];
+  // Fetch configured sections
+  const sections = await getHomeSections();
 
   return (
     <main className="min-h-screen bg-background font-sans selection:bg-primary/30 text-foreground">
-      {/* Navbar is Global */}
+      {/* Hero */}
+      <HeroSection settings={settings} />
 
-      {/* If CMS has content, render it. Otherwise fallback to empty? */}
-      {blocks.length > 0 ? (
-        <PageRenderer blocks={blocks} />
-      ) : (
-        <div className="py-20 text-center">
-          <h1 className="text-4xl font-serif">Welcome to Bhogar Siddhar</h1>
-          <p className="text-muted-foreground mt-4">Please configure the Home page in the Admin Panel.</p>
-        </div>
-      )}
+      {/* About */}
+      {sections.about && <AboutSection data={sections.about} />}
 
+      {/* Teachings */}
+      {sections.teachings && <TeachingsSection data={sections.teachings} />}
+
+      {/* Sacred Places */}
+      {sections.places && <SacredPlacesSection data={sections.places} />}
+
+      {/* Footer */}
       <Footer settings={settings} />
     </main>
   );
