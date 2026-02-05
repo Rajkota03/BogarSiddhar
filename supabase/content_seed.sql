@@ -96,7 +96,8 @@ INSERT INTO public.site_settings (
   'Explore The Lineage',
   '/siddhars',
   '100vh',
-  50
+  50,
+  '/images/hero/background.png'
 )
 ON CONFLICT (id) DO UPDATE SET
   home_hero_title = EXCLUDED.home_hero_title,
@@ -115,7 +116,7 @@ VALUES (
   '{
     "images": [
       {
-        "url": "/images/siddhars/bhogar.png",
+        "url": "/images/siddhars/bhogar_meditation.png",
         "alt": "Bhogar Siddhar in Meditation",
         "caption": "Traditional depiction of Bhogar Siddhar with the dhanda (staff).",
         "source": "Palani Temple Archives"
@@ -168,19 +169,19 @@ VALUES (
       {
         "name": "Palani Malai",
         "description": "The primary seat of Bhogar''s work. It is here he installed the Navapashanam idol and entered Jeeva Samadhi.",
-        "image": "/images/places/palani.jpg",
+        "image": "/images/places/palani_sunset.png",
         "coordinates": "10.45° N, 77.52° E"
       },
       {
         "name": "Kathirguama",
         "description": "A sacred shrine in Sri Lanka closely associated with Bhogar''s guru, Kalangi Nathar, and Lord Murugan.",
-        "image": "/images/places/kathirguama.jpg",
+        "image": "/images/places/kathirguama_shrine.png",
         "coordinates": "6.41° N, 81.33° E"
       },
       {
         "name": "Poombarai",
         "description": "Home to the Kuzhanthai Velappar temple, where Bhogar created another idol of Murugan.",
-        "image": "/images/places/poombarai.jpg",
+        "image": "/images/places/poombarai_valley.png",
         "coordinates": "10.27° N, 77.41° E"
       }
     ]

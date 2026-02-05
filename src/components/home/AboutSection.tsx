@@ -21,6 +21,7 @@ export function AboutSection({ data }: { data: any }) {
                 <ScrollReveal variant="slideRight">
                     {image && (
                         <ArchivalImage
+                            src={image.url}
                             alt={image.alt}
                             caption={image.caption}
                             source={image.source}
