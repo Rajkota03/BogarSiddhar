@@ -30,54 +30,63 @@ export function HeroSection({ settings }: HeroSectionProps) {
             <div className="absolute inset-0 z-0">
                 {bgImage ? (
                     <div
-                        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed transform scale-105" // Slight scale for parallax feel
                         style={{ backgroundImage: `url('${bgImage}')` }}
                     />
                 ) : (
-                    // Fallback noise texture
-                    <div className="absolute inset-0 bg-[#2C241B] opacity-100" />
+                    <div className="absolute inset-0 bg-[#2C241B]" />
                 )}
+
+                {/* Cosmic Dark Gradient Overlay */}
                 <div
-                    className="absolute inset-0 bg-black transition-opacity duration-700"
-                    style={{ opacity: opacity }}
+                    className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90 mix-blend-multiply"
+                    style={{ opacity: 0.9 }}
                 />
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-10 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-black/40" />
+
+                {/* Subtle Grain Texture */}
+                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay" />
             </div>
 
             {/* Content */}
             <div className="relative z-10 container mx-auto px-4 text-center">
                 <ScrollReveal>
-                    <div className="max-w-4xl mx-auto space-y-8">
-
+                    <div className="max-w-4xl mx-auto space-y-10">
                         {/* Title Group */}
-                        <div className="space-y-4">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground tracking-tight drop-shadow-2xl">
+                        <div className="space-y-6">
+                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-black text-white tracking-tight drop-shadow-lg leading-tight">
                                 {title}
                             </h1>
-                            <p className="text-xl md:text-2xl text-primary font-light tracking-wide font-serif italic">
+                            <p className="text-2xl md:text-3xl text-cyan-200 font-serif italic tracking-wide drop-shadow-[0_0_15px_rgba(165,243,252,0.3)]">
                                 {subtitle}
                             </p>
                         </div>
 
-                        {/* Separator */}
-                        <div className="w-24 h-[1px] bg-white/20 mx-auto" />
+                        {/* Decorative Line - Cosmic Style */}
+                        <div className="flex items-center justify-center gap-4 opacity-60">
+                            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-cyan-500/50" />
+                            <div className="w-2 h-2 rotate-45 border border-cyan-400/50" />
+                            <div className="h-[1px] w-12 bg-gradient-to-r from-cyan-500/50 to-transparent" />
+                        </div>
 
-                        {/* Identity Statement (New) */}
+                        {/* Identity Statement */}
                         <div className="max-w-2xl mx-auto">
-                            <p className="text-base md:text-lg text-muted-foreground/90 font-sans font-light leading-relaxed">
+                            <p className="text-lg md:text-xl text-zinc-200 font-sans font-light leading-relaxed drop-shadow-md">
                                 {identity}
                             </p>
                         </div>
 
-                        {/* CTA */}
+                        {/* CTA Button */}
                         {showCta && (
-                            <div className="pt-8">
+                            <div className="pt-8 animate-fade-in-up">
                                 <Link
                                     href={ctaLink}
-                                    className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full transition-all duration-300 uppercase tracking-widest text-xs font-bold"
+                                    className="group relative inline-flex items-center gap-3 px-8 py-4 overflow-hidden rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium transition-all duration-300 hover:bg-white/20 hover:border-amber-400/50 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)]"
                                 >
-                                    {ctaText}
-                                    <ArrowRight className="w-4 h-4" />
+                                    <span className="uppercase tracking-[0.2em] text-sm group-hover:text-amber-300 transition-colors">
+                                        {ctaText}
+                                    </span>
+                                    <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
                         )}
@@ -86,8 +95,9 @@ export function HeroSection({ settings }: HeroSectionProps) {
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-                <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-white to-transparent" />
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 animate-bounce">
+                <span className="text-[10px] uppercase tracking-widest text-zinc-400">Scroll</span>
+                <div className="w-[1px] h-16 bg-gradient-to-b from-zinc-500 to-transparent" />
             </div>
         </section>
     );
