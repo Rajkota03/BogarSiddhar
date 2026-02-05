@@ -8,9 +8,18 @@ export async function middleware(request: NextRequest) {
         },
     })
 
+    // Safety check for environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        console.error("Middleware Error: Missing Supabase Environment Variables");
+        // We can't use Supabase without credentials, so return response as is (auth won't work)
+        // or redirect to a specific error page if critical.
+        // For now, let it proceed but skip Supabase logic to avoid 500 crash.
+        return response;
+    }
+
     const supabase = createServerClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         {
             cookies: {
                 getAll() {
