@@ -53,10 +53,10 @@ export function SuggestionCard({ siddhar, index, progress, range, targetScale }:
                     // No dynamic top offset based on index, just sticky centering
                     // We rely on the wrapper's sticky top-0 and flex-center to handle position
                 }}
-                className="relative w-full max-w-5xl h-[70vh] bg-background border border-border rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row origin-top"
+                className="relative w-full max-w-5xl h-[85vh] md:h-[70vh] bg-background border border-border rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row origin-top"
             >
                 {/* Image Section */}
-                <div className="w-full md:w-5/12 relative h-1/3 md:h-full bg-muted/20">
+                <div className="w-full md:w-5/12 relative h-2/5 md:h-full bg-muted/20 shrink-0">
                     {siddhar.image_path ? (
                         <Image
                             src={siddhar.image_path}
@@ -73,7 +73,7 @@ export function SuggestionCard({ siddhar, index, progress, range, targetScale }:
                 </div>
 
                 {/* Text Section */}
-                <div className="w-full md:w-7/12 p-8 md:p-12 flex flex-col justify-center space-y-6 bg-card">
+                <div className="w-full md:w-7/12 p-6 md:p-12 flex flex-col justify-center space-y-4 md:space-y-6 bg-card overflow-y-auto">
                     <div>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}

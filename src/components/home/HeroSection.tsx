@@ -30,7 +30,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
             <div className="absolute inset-0 z-0">
                 {bgImage ? (
                     <div
-                        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed transform scale-105" // Slight scale for parallax feel
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed transform scale-105" // Slight scale for parallax feel
                         style={{ backgroundImage: `url('${bgImage}')` }}
                     />
                 ) : (
